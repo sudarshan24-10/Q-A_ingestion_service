@@ -1,6 +1,6 @@
 from typing import List
-from usecase.content_chunk_usecase.chunck_builder_usecase.chunk import Chunk
-from usecase.content_chunk_usecase.atomic_extract_usecase.atomic_unit import AtomicUnit
+from usecase.chunking.content_chunk_usecase.chunck_builder_usecase.chunk import Chunk
+from usecase.chunking.content_chunk_usecase.atomic_extract_usecase.atomic_unit import AtomicUnit
 
 class ChunkBuilder:
     MAX_CHARS = 500
@@ -16,7 +16,8 @@ class ChunkBuilder:
                 chunks.append(
                     Chunk(
                         text="\n".join(buffer),
-                        metadata={"section": current_section}
+                        metadata={"section": current_section},
+                        embedding=[]
                     )
                 )
                 buffer = []

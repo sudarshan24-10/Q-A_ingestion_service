@@ -1,6 +1,6 @@
 import re
 from typing import List
-from usecase.content_chunk_usecase.atomic_extract_usecase.atomic_unit import AtomicUnit
+from usecase.chunking.content_chunk_usecase.atomic_extract_usecase.atomic_unit import AtomicUnit
 
 
 class AtomicUnitExtractor:

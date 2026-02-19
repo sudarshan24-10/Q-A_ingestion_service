@@ -1,4 +1,4 @@
-from usecase.content_chunk_usecase.chunck_stratergy import ChunckStratergy
+from usecase.chunking.content_chunk_usecase.chunck_stratergy import ChunckStratergy
 from llama_index.core import Document
 from llama_index.core.node_parser import HierarchicalNodeParser
 from typing import Optional, List, Dict

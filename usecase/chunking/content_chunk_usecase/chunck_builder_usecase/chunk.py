@@ -5,3 +5,4 @@ from typing import Dict
 class Chunk:
     text: str
     metadata: Dict
+    embedding: list[float]

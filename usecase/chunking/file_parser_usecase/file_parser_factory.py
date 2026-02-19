@@ -1,5 +1,5 @@
-from usecase.file_parser_usecase.pdf_parser import PdfParser
-from usecase.file_parser_usecase.base_parser import ParserStratergy
+from usecase.chunking.file_parser_usecase.pdf_parser import PdfParser
+from usecase.chunking.file_parser_usecase.base_parser import ParserStratergy
 class ParserFactory:
     def __init__(self, file_extension: str):
         self.file_extension = file_extension

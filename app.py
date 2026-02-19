@@ -1,7 +1,9 @@
 from fastapi import FastAPI
 import uvicorn
+from contextlib import asynccontextmanager
 from routes.object_storage_routes import router as object_storage_router
 from common.logger.logger import AppLogger
+from database.postgres import PostgresDB
 
 def create_app() -> FastAPI:
     app = FastAPI(
@@ -11,6 +13,9 @@ def create_app() -> FastAPI:
         docs_url="/docs",
         redoc_url="/redoc"
     )
+
+    db = PostgresDB()
+    db.init_db()
 
     @app.get("/health", tags=["Health"])
     async def health_check():

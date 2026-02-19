@@ -1,7 +1,7 @@
 
-from usecase.content_chunk_usecase.chunck_stratergy import ChunckStratergy
-from usecase.content_chunk_usecase.hierarchical_chunking import HierarchicalChunkingStrategy
-from usecase.content_chunk_usecase.structure_aware_chunking import StructureAwareChunkingStrategy
+from usecase.chunking.content_chunk_usecase.chunck_stratergy import ChunckStratergy
+from usecase.chunking.content_chunk_usecase.hierarchical_chunking import HierarchicalChunkingStrategy
+from usecase.chunking.content_chunk_usecase.structure_aware_chunking import StructureAwareChunkingStrategy
 class ChunckStratergyFactory:
     def __init__(self):
         self.stratergy:dict[str,ChunckStratergy] ={

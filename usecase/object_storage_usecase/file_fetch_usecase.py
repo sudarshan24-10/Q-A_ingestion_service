@@ -1,6 +1,6 @@
 from repository.abstract.object_storage import ObjectStorageReopository
-from usecase.file_parser_usecase.base_parser import ParserStratergy
-from usecase.file_parser_usecase.file_parser_factory import ParserFactory
+from usecase.chunking.file_parser_usecase.base_parser import ParserStratergy
+from usecase.chunking.file_parser_usecase.file_parser_factory import ParserFactory
 class FileFetchUsecase:
     def __init__ (self, oject_storage_repository: ObjectStorageReopository) -> None:
         self.object_storage_repository = oject_storage_repository

@@ -1,5 +1,5 @@
 import fitz
-from usecase.file_parser_usecase.base_parser import ParserStratergy
+from usecase.chunking.file_parser_usecase.base_parser import ParserStratergy
 
 class PdfParser(ParserStratergy):
     def parse(self, file: bytes) -> str:
