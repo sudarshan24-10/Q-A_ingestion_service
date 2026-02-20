@@ -1,34 +1,39 @@
-import os
+# database/postgres.py
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from repository.model.embedding_vector_model import Base
 from config import Config
 
+# Create engine once (Singleton via module load)
+engine = create_engine(
+    Config.DATABASE_URL,
+    pool_pre_ping=True,
+)
 
-class PostgresDB:
+# Session factory
+SessionLocal = sessionmaker(
+    bind=engine,
+    autocommit=False,
+    autoflush=False,
+)
 
-    def __init__(self):
-        self.database_url = Config.DATABASE_URL
 
-        self.engine = create_engine(
-            self.database_url,
-            pool_pre_ping=True,
-        )
+def init_db():
+    """
+    Create tables (optional if using Supabase schema already)
+    """
+    Base.metadata.create_all(bind=engine)
+    print("Database has been created")
 
-        self.SessionLocal = sessionmaker(
-            bind=self.engine,
-            autocommit=False,
-            autoflush=False,
-        )
 
-    def init_db(self):
-        """
-        Initialize tables (optional if already created in Supabase)
-        """
-        Base.metadata.create_all(bind=self.engine)
-
-    def get_session(self):
-        """
-        Create new DB session (Unit of Work)
-        """
-        return self.SessionLocal()
+def get_db():
+    """
+    FastAPI dependency.
+    Provides a new session per request.
+    """
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()

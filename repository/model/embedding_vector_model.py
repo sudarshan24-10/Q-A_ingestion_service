@@ -16,4 +16,4 @@ class DocumentChunkModel(Base):
     chunk_index = Column(Integer, nullable=False)
     chunk_text = Column(Text, nullable=False)
     embedding = Column(Vector)
-    metadata = Column(JSONB)
+    metadata_json = Column("metadata",JSONB)

@@ -3,7 +3,9 @@ import uvicorn
 from contextlib import asynccontextmanager
 from routes.object_storage_routes import router as object_storage_router
 from common.logger.logger import AppLogger
-from database.postgres import PostgresDB
+from database.postgres import init_db
+from sqlalchemy.orm import Session
+
 
 def create_app() -> FastAPI:
     app = FastAPI(
@@ -14,8 +16,8 @@ def create_app() -> FastAPI:
         redoc_url="/redoc"
     )
 
-    db = PostgresDB()
-    db.init_db()
+    init_db();
+
 
     @app.get("/health", tags=["Health"])
     async def health_check():
@@ -24,6 +26,7 @@ def create_app() -> FastAPI:
     logger = AppLogger().get_logger()
     logger.info("Application has started successfully.")
     return app
+
 
 
 app = create_app()
